@@ -1,0 +1,7 @@
+package models
+
+type {model_name} struct {
+    Model
+    // custom field...
+}
+

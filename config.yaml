@@ -8,9 +8,9 @@ database:
   driver: mysql
   host: 127.0.0.1
   port: 3306
-  username: workflow
+  username: blog
   password: 5MpFR8d6ZkJH5etF
-  database: workflow
+  database: blog
   auto_migrate: "true"
   params: "charset=utf8mb4&parseTime=True&loc=Local"
 

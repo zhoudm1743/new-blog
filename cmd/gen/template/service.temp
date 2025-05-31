@@ -1,0 +1,101 @@
+package {group_name}
+
+type {service_name}Service interface {
+    All() ([]resp.{service_name}Resp, error)
+	List(page req.PageReq, listReq req.{service_name}QueryReq) (response.PageResp, error)
+	Detail(id uint) (resp.{service_name}Resp, error)
+	Add(addReq req.{service_name}AddReq, auth *req.AuthReq) error
+	Edit(editReq req.{service_name}EditReq, auth *req.AuthReq) error
+	Del(id uint, auth *req.AuthReq) error
+}
+
+type i{service_name}Service struct {
+    db      *gorm.DB
+}
+
+func (iSrv i{service_name}Service) All() ([]resp.{service_name}Resp, error) {
+    var {origin_service_name}s []models.{model_name}
+    if err := iSrv.db.Order("id desc").Find(&{origin_service_name}s).Error; err != nil {
+        return nil, err
+    }
+    var res []resp.{service_name}Resp
+    response.Copy(&resps, &{origin_service_name}s)
+    return res, nil
+}
+
+func (iSrv i{service_name}Service) List(page req.PageReq, listReq req.{service_name}QueryReq) (response.PageResp, error) {
+    limit := page.PageSize
+	offset := page.PageSize * (page.PageNo - 1)
+	chain := iSrv.db.Model(&models.{model_name}{}).Order("id desc")
+	// TODO: add query conditions here
+	var count int64
+	if err := chain.Count(&count).Error; err != nil {
+		return response.PageResp{}, fmt.Errorf("查询失败: %v", err)
+	}
+	var {origin_service_name}s []models.{model_name}
+	if err := chain.Limit(limit).Offset(offset).Find(&{origin_service_name}s).Error; err != nil {
+		return response.PageResp{}, fmt.Errorf("查询失败: %v", err)
+	}
+	var res []resp.{service_name}Resp
+	response.Copy(&res, &{origin_service_name}s)
+	return response.PageResp{
+    		Count:    count,
+    		PageNo:   page.PageNo,
+    		PageSize: page.PageSize,
+    		Lists:    res,
+    }, nil
+}
+
+func (iSrv i{service_name}Service) Detail(id uint) (resp.{service_name}Resp, error) {
+    var {origin_service_name} models.{model_name}
+    if err := iSrv.db.First(&{origin_service_name}, id).Error; err != nil {
+        if errors.Is(err, gorm.ErrRecordNotFound) {
+            return resp.{service_name}Resp{}, fmt.Errorf("记录不存在: %v", err)
+        }
+        return resp.{service_name}Resp{}, err
+    }
+    var res resp.{service_name}Resp
+    response.Copy(&res, &{origin_service_name})
+    return res, nil
+}
+
+func (iSrv i{service_name}Service) Add(addReq req.{service_name}AddReq, auth *req.AuthReq) error {
+    // TODO: add add logic here
+    var {origin_service_name} models.{model_name}
+    response.Copy(&{origin_service_name}, &addReq)
+    if err := iSrv.db.Create(&{origin_service_name}).Error; err != nil {
+        return fmt.Errorf("创建失败: %v", err)
+    }
+    return nil
+}
+
+func (iSrv i{service_name}Service) Edit(editReq req.{service_name}EditReq, auth *req.AuthReq) error {
+    // TODO: add edit logic here
+    var {origin_service_name} models.{model_name}
+    if err := iSrv.db.First(&{origin_service_name}, editReq.Id).Error; err != nil {
+        if errors.Is(err, gorm.ErrRecordNotFound) {
+            return fmt.Errorf("记录不存在: %v", err)
+        }
+        return err
+    }
+    response.Copy(&{origin_service_name}, &editReq)
+    if err := iSrv.db.Save(&{origin_service_name}).Error; err != nil {
+        return fmt.Errorf("更新失败: %v", err)
+    }
+    return nil
+}
+
+func (iSrv i{service_name}Service) Del(id uint, auth *req.AuthReq) error {
+    // TODO: add del logic here
+    var {origin_service_name} models.{model_name}
+    if err := iSrv.db.Delete(&{origin_service_name}, id).Error; err != nil {
+        return fmt.Errorf("删除失败: %v", err)
+    }
+    return nil
+}
+
+func New{service_name}Service(db *gorm.DB) {service_name}Service {
+    return i{service_name}Service{
+        db: db,
+    }
+}

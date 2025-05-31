@@ -1,0 +1,20 @@
+package routes
+import (
+    "github.com/gin-gonic/gin"
+    "go.uber.org/fx"
+)
+type Routes struct {
+	fx.In
+	Http *http.Service
+}
+
+func NewRoutes(t Routes, h *http.Service) *types.{module_name}Router {
+    return &types.{module_name}Router{
+        RouterGroup: h.Http.Gin.Group("/{origin_module_name}"),
+    }
+}
+
+var Module = fx.Options(
+    fx.Provide(NewRoutes),
+    // Add injectors here
+)

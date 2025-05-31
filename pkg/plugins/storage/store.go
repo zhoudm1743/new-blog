@@ -2,9 +2,9 @@ package storage
 
 import (
 	"fmt"
-	"github.com/hulutech-web/workflow-engine/core/config"
-	"github.com/hulutech-web/workflow-engine/pkg/util"
 	"mime/multipart"
+	"new-blog/core/config"
+	"new-blog/pkg/util"
 	"path"
 	"strings"
 	"time"

@@ -1,0 +1,11 @@
+package {origin_module_name}
+
+import (
+    "go.uber.org/fx"
+)
+
+var Module = fx.Module("{origin_module_name}",
+    // Add your dependencies here
+    service.Module,
+    routes.Module,
+)

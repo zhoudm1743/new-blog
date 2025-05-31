@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/dromara/carbon/v2"
 	"github.com/glebarez/sqlite"
-	"github.com/hulutech-web/workflow-engine/core/config"
 	"go.uber.org/fx"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
@@ -12,6 +11,7 @@ import (
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 	"log"
+	"new-blog/core/config"
 	"os"
 	"time"
 )

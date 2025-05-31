@@ -3,9 +3,10 @@ package http
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/hulutech-web/workflow-engine/core/config"
-	"github.com/hulutech-web/workflow-engine/core/http/middleware"
-	"github.com/hulutech-web/workflow-engine/core/logging"
+	"new-blog/core/config"
+	"new-blog/core/http/middleware"
+	logging "new-blog/core/logger"
+
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/fx"

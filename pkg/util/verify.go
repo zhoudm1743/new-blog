@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	"github.com/hulutech-web/workflow-engine/core/http/validator"
-	"github.com/hulutech-web/workflow-engine/pkg/plugin/response"
 	"io/ioutil"
 	"mime/multipart"
+	"new-blog/pkg/plugins/response"
+	"new-blog/pkg/plugins/validator"
 )
 
 var VerifyUtil = verifyUtil{

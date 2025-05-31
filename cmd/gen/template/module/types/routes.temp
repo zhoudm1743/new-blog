@@ -1,0 +1,9 @@
+package types
+
+import (
+	"github.com/gin-gonic/gin"
+)
+
+type {module_name}Router struct {
+    *gin.RouterGroup
+}

@@ -3,7 +3,7 @@ package util
 import (
 	"errors"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/hulutech-web/workflow-engine/core/config"
+	"new-blog/core/config"
 	"time"
 )
 

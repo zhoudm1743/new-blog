@@ -5,8 +5,8 @@ import (
 	unTrans "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	zhTrans "github.com/go-playground/validator/v10/translations/zh"
-	valiRules "github.com/hulutech-web/workflow-engine/pkg/validate"
 	"go.uber.org/zap"
+	valiRules "new-blog/pkg/plugins/validator/rules"
 	"reflect"
 )
 

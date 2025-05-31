@@ -2,7 +2,6 @@ package logging
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/hulutech-web/workflow-engine/core/config"
 	"github.com/natefinch/lumberjack"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -10,6 +9,7 @@ import (
 	"net"
 	"net/http"
 	"net/http/httputil"
+	"new-blog/core/config"
 	"os"
 	"runtime/debug"
 	"strings"
