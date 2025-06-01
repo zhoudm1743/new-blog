@@ -60,6 +60,7 @@ func generateModel(args []string) {
 	if err != nil {
 		return
 	}
+	os.Exit(0)
 }
 
 func generateModule(args []string) {
@@ -67,6 +68,7 @@ func generateModule(args []string) {
 	if err != nil {
 		return
 	}
+	os.Exit(0)
 }
 
 func generateService(args []string) {
@@ -74,4 +76,5 @@ func generateService(args []string) {
 	if err != nil {
 		return
 	}
+	os.Exit(0)
 }

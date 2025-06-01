@@ -6,5 +6,5 @@ type User struct {
 	Password string `gorm:"size:255;not null"`
 	Email    string `gorm:"size:255;not null;default:null"`
 	Status   int8   `gorm:"default:1"`
-	Role     uint   `gorm:"default:0"`
+	IsAdmin  uint8  `gorm:"default:0"`
 }

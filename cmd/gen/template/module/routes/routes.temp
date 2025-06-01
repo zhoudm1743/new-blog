@@ -10,7 +10,7 @@ type Routes struct {
 
 func NewRoutes(t Routes, h *http.Service) *types.{module_name}Router {
     return &types.{module_name}Router{
-        RouterGroup: h.Http.Gin.Group("/{origin_module_name}"),
+        RouterGroup: t.Http.Gin.Group("/{origin_module_name}"),
     }
 }
 

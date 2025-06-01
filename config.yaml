@@ -9,9 +9,9 @@ database:
   host: 127.0.0.1
   port: 3306
   username: blog
-  password: 5MpFR8d6ZkJH5etF
+  password: MNGMKf8c3P8teiTC
   database: blog
-  auto_migrate: "true"
+  autoMigrate: true
   params: "charset=utf8mb4&parseTime=True&loc=Local"
 
 redis:
@@ -22,7 +22,7 @@ redis:
 
 jwt:
   secret: "your-secret-key"
-  access_expiry: 1h
+  access_expiry: 3h
   refresh_expiry: 168h # 7 days
 
 logging:

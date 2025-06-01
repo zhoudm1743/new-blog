@@ -13,7 +13,7 @@ var rootCmd = &cobra.Command{
 	Long: `A Fast and Flexible Static Site Generator built with
 				  love by spf13 and friends in Go.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("run seven...")
+		//os.Exit(1)
 	},
 }
 
