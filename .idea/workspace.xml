@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55d04a2e-a245-4238-9f72-30960ccf0f8e" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/core/logger/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/core/logger/service.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/util/verify.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/util/verify.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/types/tstime.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/routes/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/schemas/req/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/schemas/req/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/schemas/resp/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/schemas/resp/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/service.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/service/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/service/user/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/gen/template/service.temp" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/gen/template/service.temp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +31,7 @@
   </component>
   <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.2.windows-amd64" />
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -44,40 +54,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go 构建.go build new-blog -buildvcs=false.executor&quot;: &quot;Run&quot;,
-    &quot;Go 构建.go build new-blog.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-git.bad.executable&quot;: &quot;未安装 Git&quot;,
-    &quot;Notification.DoNotAsk-git.bad.executable&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/Git/new-blog&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go 构建.go build new-blog -buildvcs=false.executor": "Run",
+    "Go 构建.go build new-blog.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-git.bad.executable": "未安装 Git",
+    "Notification.DoNotAsk-git.bad.executable": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "G:/Git/new-blog/pkg/types",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Git\new-blog\pkg\types" />
       <recent name="G:\Git\new-blog" />
       <recent name="G:\Git\new-blog\pkg" />
       <recent name="G:\Git\new-blog\pkg\plugins" />
       <recent name="G:\Git\new-blog\core" />
-      <recent name="G:\Git\new-blog\pkg\plugins\validator" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\Git\new-blog\pkg\plugins" />

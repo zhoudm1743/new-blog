@@ -24,8 +24,18 @@ type iUserService struct {
 }
 
 func (iSrv iUserService) All(listReq req.UserQueryReq, auth *req.AuthReq) ([]resp.UserResp, error) {
+	chain := iSrv.db.Model(&models.User{}).Order("id desc")
+	if listReq.Username != "" {
+		chain = chain.Where("username LIKE ?", fmt.Sprintf("%%%s%%", listReq.Username))
+	}
+	if listReq.Email != "" {
+		chain = chain.Where("email LIKE ?", fmt.Sprintf("%%%s%%", listReq.Email))
+	}
+	if listReq.Status > -1 {
+		chain = chain.Where("status = ?", listReq.Status)
+	}
 	var users []models.User
-	if err := iSrv.db.Order("id desc").Find(&users).Error; err != nil {
+	if err := chain.Find(&users).Error; err != nil {
 		return nil, err
 	}
 	var res []resp.UserResp
@@ -37,7 +47,15 @@ func (iSrv iUserService) List(page req.PageReq, listReq req.UserQueryReq, auth *
 	limit := page.PageSize
 	offset := page.PageSize * (page.PageNo - 1)
 	chain := iSrv.db.Model(&models.User{}).Order("id desc")
-	// TODO: add query conditions here
+	if listReq.Username != "" {
+		chain = chain.Where("username LIKE ?", fmt.Sprintf("%%%s%%", listReq.Username))
+	}
+	if listReq.Email != "" {
+		chain = chain.Where("email LIKE ?", fmt.Sprintf("%%%s%%", listReq.Email))
+	}
+	if listReq.Status > -1 {
+		chain = chain.Where("status = ?", listReq.Status)
+	}
 	var count int64
 	if err := chain.Count(&count).Error; err != nil {
 		return response.PageResp{}, fmt.Errorf("查询失败: %v", err)
@@ -70,7 +88,11 @@ func (iSrv iUserService) Detail(id uint) (resp.UserResp, error) {
 }
 
 func (iSrv iUserService) Add(addReq req.UserAddReq, auth *req.AuthReq) error {
-	// TODO: add add logic here
+	var count int64
+	iSrv.db.Model(&models.User{}).Where("username = ?", addReq.Username).Count(&count)
+	if count > 0 {
+		return fmt.Errorf("用户名已存在: %s", addReq.Username)
+	}
 	var user models.User
 	response.Copy(&user, &addReq)
 	if err := iSrv.db.Create(&user).Error; err != nil {
@@ -80,7 +102,11 @@ func (iSrv iUserService) Add(addReq req.UserAddReq, auth *req.AuthReq) error {
 }
 
 func (iSrv iUserService) Edit(editReq req.UserEditReq, auth *req.AuthReq) error {
-	// TODO: add edit logic here
+	var count int64
+	iSrv.db.Model(&models.User{}).Where("username = ?", editReq.Username).Where("id != ?", editReq.ID).Count(&count)
+	if count > 0 {
+		return fmt.Errorf("用户名已存在: %s", editReq.Username)
+	}
 	var user models.User
 	if err := iSrv.db.First(&user, editReq.ID).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -96,7 +122,12 @@ func (iSrv iUserService) Edit(editReq req.UserEditReq, auth *req.AuthReq) error 
 }
 
 func (iSrv iUserService) Del(id uint, auth *req.AuthReq) error {
-	// TODO: add del logic here
+	if !auth.IsAdmin {
+		return fmt.Errorf("无权限删除")
+	}
+	if id == auth.UserId {
+		return fmt.Errorf("不能删除自己")
+	}
 	var user models.User
 	if err := iSrv.db.Delete(&user, id).Error; err != nil {
 		return fmt.Errorf("删除失败: %v", err)

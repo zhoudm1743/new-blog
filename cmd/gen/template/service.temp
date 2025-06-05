@@ -14,8 +14,10 @@ type i{service_name}Service struct {
 }
 
 func (iSrv i{service_name}Service) All(listReq req.{service_name}QueryReq, auth *req.AuthReq) ([]resp.{service_name}Resp, error) {
+    chain := iSrv.db.Model(&models.{model_name}{}).Order("id desc")
+    // TODO: add query conditions here
     var {origin_service_name}s []models.{model_name}
-    if err := iSrv.db.Order("id desc").Find(&{origin_service_name}s).Error; err != nil {
+    if err := chain.Find(&{origin_service_name}s).Error; err != nil {
         return nil, err
     }
     var res []resp.{service_name}Resp
